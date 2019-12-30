@@ -1,6 +1,6 @@
 # 基于增强现实框架GeoAR.js的导航系统
-## 学习GeoAR.js
-### `gps-camera`
+## 学习GeoAR.js  
+### [`gps-camera`](https://github.com/nicolocarpignoli/GeoAR.js)
 
 **Required**: yes  
 **Max allowed per scene**: 1
@@ -35,9 +35,11 @@ See [here](https://aframe.io/docs/0.9.0/components/camera.html#reading-position-
 **Required**: yes  
 **Max allowed per scene**: no limit
 
-This component makes every entity GPS-trackable. It assignes a specific world position to the entity, so the user can see it when their phone is pointing to its position in the real world. If user is far from the entity, their will see it smaller. If it is too far, their will not see it at all.
+This component makes every entity GPS-trackable. It assignes a specific world position to the entity, so the user can see it when their phone is pointing to its position in the real world. If user is far from the entity, their will see it smaller. If it is too far, their will not see it at all.  
+该组件使每个实体都可以进行GPS跟踪。 它为实体分配了特定的世界位置，因此用户在手机指向现实世界中的位置时可以看到它。 如果用户远离实体，他们将看到较小的实体。 如果距离太远，他们将根本看不到它。
 
-It requires latitude and longitude as a single string parameter (example with `a-box` aframe primitive):
+It requires latitude and longitude as a single string parameter (example with `a-box` aframe primitive):  
+它需要纬度和经度作为单个字符串参数（举一个aframe原始框架`a-box`的例子）：
 
 ```HTML
 <a-box color="yellow" gps-entity-place="latitude: <your-latitude>; longitude: <your-longitude>"/>
@@ -48,11 +50,14 @@ It requires latitude and longitude as a single string parameter (example with `a
 **Required**: no  
 **Max allowed per scene**: 1
 
-This component has to be added only in development environments, not production ones.
-It shows a debug UI with camera informations and a list of registered `gps-entity-place` entities, showing also distance from the user for each one.
+This component has to be added only in development environments, not production ones.It shows a debug UI with camera informations and a list of registered `gps-entity-place` entities, showing also distance from the user for each one.  
+该组件仅在开发环境中才需要添加，而不是在生产环境中添加。它显示了带有相机信息的调试UI和已注册的`gps-entity-place`实体列表，还显示了每个用户与用户的距离。
 
-It has to be added to the `a-scene`:
+It has to be added to the `a-scene`:  
+必须将其添加到`a-scene`中：
 
 ```HTML
 <a-scene gps-camera-debug embedded arjs='sourceType: webcam; debugUIEnabled: false;'></a-scene>
 ```
+
+### 测试结果

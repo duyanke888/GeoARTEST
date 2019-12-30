@@ -2,7 +2,8 @@
 - [x] 搭建一个简易服务器  
   使用node.js express
 - [x] 获取PC设备当前位置
-  navigator.geolocation.getCurrentPosition()
+  navigator.geolocation.getCurrentPosition()  
+  navigator.geolocation.watchPosition()此函数用于监听位置改变
 - [x] 在视区内显示一个简单物标  
   位置固定
 - [x] 使用手机作为终端进行演示  
@@ -71,9 +72,13 @@ openssl x509 -req -days 365 -in csr.pem -signkey private.pem -out file.crt
 
 node.js代码详见server.js的改动
 ```
+- [ ] GeoAR的使用  
+  总是不显示物标  
+  在二维地图上显示物标所在位置，利用BMAP.Marker()
+
 - [ ] 显示指南针  
   使用[deviceorientation](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/deviceorientation_event),  
-  **但是**初始方向是为0度。
+  **但是**默认0度是初始方向。
   
 - [ ] 加载多物标(这是关键点)
 - [ ] 与小地图联动

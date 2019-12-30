@@ -2,58 +2,67 @@
 var vconsole = new VConsole();
 
 // WhatBrowser();
-// if (navigator.geolocation) {
-//     // alert("您的浏览器支持地理定位")
-//     navigator.geolocation.getCurrentPosition(function (p) {
-//         var latitude = p.coords.latitude;
-//         var longitude = p.coords.longitude;
-//         alert("纬度" + latitude + "  经度" + longitude);
-//         createMap(latitude, longitude);
-//         // alert(1);
-//         const scene = document.querySelector('a-scene');
-//         loadPlaces(p)
-//             .then((places) => {
-//                 places.forEach((place) => {
-//                     const latitude = place.location.lat;
-//                     const longitude = place.location.lng;
+if (navigator.geolocation) {
+    alert("您的浏览器支持地理定位")
+    locationChanged();
+    //监听地理位置改变
+    // id = navigator.geolocation.watchPosition(success, error, options);
+} else {
+    alert("您的浏览器不支持地理定位")
+} //end if-else
 
-//                     console.log("物标的坐标为：", latitude ,"+", longitude)
-//                     // add place name
-//                     const text = document.createElement('a-image');
-//                     text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-//                     text.setAttribute('title', place.name);
-//                     text.setAttribute('src', './image/hangbiao.jpg');
-//                     text.setAttribute('scale', '20 20 20');
+function locationChanged(){
+    console.log("位置改变")
+    navigator.geolocation.getCurrentPosition(function (p) {
+        var latitude = p.coords.latitude;
+        var longitude = p.coords.longitude;
+        alert("纬度" + latitude + "  经度" + longitude);
+        // createMap(latitude, longitude);
+        // alert(1);
+        const scene = document.querySelector('a-scene');
+        loadPlaces(p)
+            .then((places) => {
+                places.forEach((place) => {
+                    const latitude = place.location.lat;
+                    const longitude = place.location.lng;
 
-//                     text.addEventListener('loaded', () => {
-//                         window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
-//                         console.log("物标已加载")
-//                     });
+                    console.log("物标的坐标为   纬度：", latitude ,"，经度：", longitude)
+                    // add place name
+                    const text = document.createElement('a-image');
+                    text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+                    text.setAttribute('title', place.name);
+                    text.setAttribute('src', './image/hangbiao.jpg');
+                    text.setAttribute('scale', '20 20 20');
 
-//                     scene.appendChild(text);
-//                 }); //end forEach
-//             }); //end loadPlaces.then
-//     }, function (error) {
-//         switch (error.code) {
-//             case error.PERMISSION_DENIED:
-//                 x.innerHTML = "用户拒绝对获取地理位置的请求。"
-//                 break;
-//             case error.POSITION_UNAVAILABLE:
-//                 x.innerHTML = "位置信息是不可用的。"
-//                 break;
-//             case error.TIMEOUT:
-//                 x.innerHTML = "请求用户地理位置超时。"
-//                 break;
-//             case error.UNKNOWN_ERROR:
-//                 x.innerHTML = "未知错误。"
-//                 break;
-//         }
-//     });
-// } else {
-//     alert("您的浏览器不支持地理定位")
-// } //end if-else
+                    text.addEventListener('loaded', () => {
+                        window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+                        console.log("物标已加载")
+                    });
 
-
+                    scene.appendChild(text);
+                }); //end forEach
+            }); //end loadPlaces.then
+    }, function (error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                x.innerHTML = "用户拒绝对获取地理位置的请求。"
+                break;
+            case error.POSITION_UNAVAILABLE:
+                x.innerHTML = "位置信息是不可用的。"
+                break;
+            case error.TIMEOUT:
+                x.innerHTML = "请求用户地理位置超时。"
+                break;
+            case error.UNKNOWN_ERROR:
+                x.innerHTML = "未知错误。"
+                break;
+        }
+    },{
+        enableHighAccuracy: true,//是否要求高精度的地理位置信息
+        maximumAge: 100,//对地理位置进行缓存的有效时间(单位为毫秒).
+        accuracy:100,//精度
+    });
+}
 
 // // <!-- 把我们获取到的经纬度传给百度地图来给我显示位置 -->
 // function createMap(a, b) {
@@ -90,7 +99,7 @@ var vconsole = new VConsole();
 // }
 
 //使用百度地图自己的定位函数进行定位
-baiduLocation()
+// baiduLocation()
 function baiduLocation() {
     // 百度地图API功能
     var map = new BMap.Map("dituContent");
@@ -108,7 +117,8 @@ function baiduLocation() {
             // map.panTo(r.point);
             alert('您的位置：' + r.point.lng + ',' + r.point.lat);
             loadPlaces(r.point);
-            var pt = new BMap.Point(121.53066303521642, 38.87455);//宿舍测试用坐标
+            // var pt = new BMap.Point(121.53066303521642, 38.87455);//宿舍测试用坐标
+            var pt = new BMap.Point(121.53573364883,38.878074451474);//实验室测试用坐标
             // var myIcon = new BMap.Icon("./image/hangbiao.jpg", new BMap.Size(100, 100));
             // var marker2 = new BMap.Marker(pt, { icon: myIcon }); // 创建标注
             var marker2 = new BMap.Marker(pt); // 创建标注
@@ -183,7 +193,7 @@ function WhatBrowser() {
 //检查手机是否支持DeviceOrientation
 if(window.DeviceOrientationEvent){
     // alert("您的浏览器支持DeviceOrientation")
-    window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
+    // window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
 }else{
     alert("您的浏览器不支持DeviceOrientation");
 }
