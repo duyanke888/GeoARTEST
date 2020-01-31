@@ -1,0 +1,16 @@
+{
+  "name": "places-name",
+  "version": "1.0.0",
+  "description": "- [x] 获取PC设备当前位置\r - [x] 在视区内显示一个简单物标  \r       位置固定\r - [ ] 使用手机作为终端进行演示\r - [ ] 加载多物标\r - [ ] 与小地图联动",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "duyanke888",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  }
+}
