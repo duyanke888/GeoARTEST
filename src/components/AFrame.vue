@@ -6,16 +6,13 @@
             <div
                 id="label-3"
                 style="color: #aaffaa;font-size: 10px;font-weight: bold"
-            >经度：{{lat}}      纬度：{{lon}}</div>
+            >经度：{{lat}} 纬度：{{lon}}</div>
             <div
                 id="label-4"
                 style="color: #red;font-size: 10px;font-weight: bold"
             >指南针数据：{{campassData}}</div>
         </div>
         <a-scene id="aScene">
-            <!-- <a-assets>
-                <a-asset-item id="ducky-obj" src="./AFrameSets/ducky.obj"></a-asset-item>
-            </a-assets>-->
             <a-sphere position="0 1.25 -2" radius="1.25" color="#EF2D5E"></a-sphere>
             <a-box
                 position="1 0.5 0"
@@ -26,7 +23,7 @@
                 color="#4CC3D9"
             ></a-box>
         </a-scene>
-
+            
         <video id="inputVideo" autoplay loop muted></video>
     </div>
 </template>

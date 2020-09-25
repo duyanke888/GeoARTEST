@@ -67,10 +67,6 @@ export default {
             this.$router.push({ name: "AFrame", params: { id: "1" } });
         },
         getLocation() {
-            bus.$emit("locationCoords", {
-                lat: this.lat,
-                lon: this.lon,
-            });
             if (navigator.geolocation) {
                 //获取当前位置
                 navigator.geolocation.getCurrentPosition(
@@ -84,13 +80,24 @@ export default {
                         // 整理数据
                         this.lat = data.latitude; //纬度
                         this.lon = data.longitude; //经度
-                        var alt = data.altitude ;
-                        var accLatlng = data.accuracy ;
-                        var accAlt = data.altitudeAccuracy ;
-                        var heading = data.heading ;
-                        var speed = data.speed ;
+                        var alt = data.altitude;
+                        var accLatlng = data.accuracy;
+                        var accAlt = data.altitudeAccuracy;
+                        var heading = data.heading;
+                        var speed = data.speed;
 
-                        console.log("纬度"+this.lat+"       经度"+this.lon+"        高度"+alt+"     朝向"+heading+"     速度"+speed)
+                        console.log(
+                            "纬度" +
+                                this.lat +
+                                "       经度" +
+                                this.lon +
+                                "        高度" +
+                                alt +
+                                "     朝向" +
+                                heading +
+                                "     速度" +
+                                speed
+                        );
 
                         // document.getElementById( 'result' ).innerHTML = '<dl><dt>緯度</dt><dd>' + lat + '</dd><dt>経度</dt><dd>' + lng + '</dd><dt>緯度、経度の精度</dt><dd>' + accLatlng;
 
@@ -139,6 +146,10 @@ export default {
                 alert(errorMessage);
                 // document.getElementById( 'result' ).innerHTML = errorMessage ;
             }
+            bus.$emit("locationCoords", {
+                lat: this.lat,
+                lon: this.lon,
+            });
         },
     },
 };
